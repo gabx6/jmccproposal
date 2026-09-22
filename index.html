@@ -1,0 +1,3846 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Proposal</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+
+    font-family: 'Montserrat', sans-serif;
+
+    color: #4a4a4a;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100dvh;
+
+    padding: 20px 0 85px;
+
+    overflow-x: hidden;
+
+    -webkit-font-smoothing: antialiased;
+
+    /* Romantic animated background */
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255, 180, 200, .65),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(255, 210, 225, .7),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 10% 85%,
+            rgba(255, 195, 215, .55),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(255, 175, 200, .5),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #fff7f9,
+            #ffeef3,
+            #fff8fa,
+            #ffe8ef
+        );
+
+    background-size:
+        180% 180%,
+        180% 180%,
+        180% 180%,
+        180% 180%,
+        300% 300%;
+
+    animation: romanticBackground 18s ease-in-out infinite alternate;
+}
+
+
+@keyframes romanticBackground {
+
+    0% {
+        background-position:
+            0% 0%,
+            100% 0%,
+            0% 100%,
+            100% 100%,
+            0% 50%;
+    }
+
+    50% {
+        background-position:
+            30% 20%,
+            70% 30%,
+            20% 70%,
+            80% 80%,
+            100% 50%;
+    }
+
+    100% {
+        background-position:
+            60% 40%,
+            40% 60%,
+            70% 30%,
+            30% 70%,
+            0% 50%;
+    }
+}
+
+
+/* =====================================================
+   HEART BACKGROUND
+===================================================== */
+
+#loveHearts {
+
+    position: fixed;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+/* Main floating hearts */
+
+.extra-heart {
+
+    position: absolute;
+
+    bottom: -80px;
+
+    user-select: none;
+
+    pointer-events: none;
+
+    animation:
+        extraHeartFloat linear forwards;
+
+    opacity: 0;
+
+    filter:
+        drop-shadow(
+            0 0 5px rgba(255, 80, 130, .55)
+        )
+        drop-shadow(
+            0 0 15px rgba(255, 120, 160, .35)
+        );
+
+    will-change:
+        transform,
+        opacity;
+}
+
+
+@keyframes extraHeartFloat {
+
+    0% {
+
+        transform:
+            translateY(0)
+            translateX(0)
+            rotate(0deg)
+            scale(.3);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: .85;
+    }
+
+    25% {
+
+        transform:
+            translateY(-25vh)
+            translateX(35px)
+            rotate(15deg)
+            scale(.8);
+    }
+
+    50% {
+
+        transform:
+            translateY(-55vh)
+            translateX(-40px)
+            rotate(-15deg)
+            scale(1);
+    }
+
+    75% {
+
+        transform:
+            translateY(-85vh)
+            translateX(45px)
+            rotate(18deg)
+            scale(1.2);
+    }
+
+    100% {
+
+        transform:
+            translateY(-125vh)
+            translateX(-20px)
+            rotate(-20deg)
+            scale(1.4);
+
+        opacity: 0;
+    }
+}
+
+
+/* Tiny hearts */
+
+.mini-love {
+
+    position: absolute;
+
+    color: #ff8fab;
+
+    animation:
+        miniPulse ease-in-out infinite;
+
+    opacity: .5;
+
+    text-shadow:
+        0 0 5px #ffb6c9,
+        0 0 10px rgba(255, 100, 140, .4);
+}
+
+
+@keyframes miniPulse {
+
+    0%,
+    100% {
+
+        transform:
+            scale(.5)
+            rotate(0deg);
+
+        opacity: .15;
+    }
+
+    50% {
+
+        transform:
+            scale(1.5)
+            rotate(15deg);
+
+        opacity: .9;
+    }
+}
+
+
+/* Big glowing hearts */
+
+.big-heart {
+
+    position: absolute;
+
+    animation:
+        bigHeartFloat linear forwards;
+
+    text-shadow:
+        0 0 5px #ffb3c6,
+        0 0 10px #ff8fab,
+        0 0 15px #ff6f91,
+        0 0 20x rgba(255, 70, 120, .5);
+}
+
+
+@keyframes bigHeartFloat {
+
+    0% {
+
+        transform:
+            translateY(0)
+            scale(.5);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: .5;
+    }
+
+    50% {
+
+        transform:
+            translateY(-50vh)
+            scale(1.1);
+
+        opacity: .8;
+    }
+
+    100% {
+
+        transform:
+            translateY(-120vh)
+            scale(1.5);
+
+        opacity: 0;
+    }
+}
+
+
+
+/* =====================================================
+   GENERAL PAGE
+===================================================== */
+
+.page {
+
+    display: none;
+
+    max-width: 440px;
+
+    width: calc(100% - 24px);
+
+    max-height: calc(100dvh - 110px);
+
+    overflow-y: auto;
+
+    padding: 30px 24px;
+
+    background: rgba(255, 255, 255, .94);
+
+    backdrop-filter: blur(5px);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(218,138,158,.25),
+        0 0 40px rgba(255,150,180,.15);
+
+    text-align: center;
+
+    flex-direction: column;
+
+    gap: 1rem;
+
+    position: relative;
+
+    z-index: 10;
+
+    animation: pageIn .4s ease;
+
+}
+
+
+.page.active {
+    display: flex;
+}
+
+
+@keyframes pageIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(15px)
+            scale(.98);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =====================================================
+   TEXT
+===================================================== */
+
+h1,
+h2,
+h3,
+h4 {
+
+    font-family:
+        'Great Vibes',
+        cursive;
+
+    color: #d8697a;
+
+    margin: 0;
+
+    letter-spacing: .03em;
+}
+
+
+h1 {
+    font-size: 2rem;
+}
+
+
+h2 {
+
+    font-size: 2.5rem;
+
+    font-weight: 400;
+}
+
+
+h3 {
+
+    font-size: 1.7rem;
+
+    color: #c75a6c;
+}
+
+
+h4 {
+
+    font-size: 1.4rem;
+
+    color: #b94c5a;
+
+    font-weight: 400;
+}
+
+
+p {
+
+    margin: 0;
+
+    font-size: .8rem;
+
+    line-height: 1.55;
+
+    color: #666;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+button {
+
+    cursor: pointer;
+
+    border: none;
+
+    border-radius: 12px;
+
+    padding: 13px 25px;
+
+    font-family:
+        'Montserrat',
+        sans-serif;
+
+    font-weight: 600;
+
+    font-size: .95rem;
+
+    background: #e18795;
+
+    color: white;
+
+    box-shadow:
+        0 4px 10px rgba(225,140,156,.45);
+
+    transition: .25s;
+}
+
+
+button:hover {
+
+    background: #b95967;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+button:active {
+
+    transform:
+        scale(.97);
+
+}
+
+
+/* =====================================================
+   PAGE 1
+===================================================== */
+
+#page1 {
+
+    padding: 45px 28px;
+
+}
+
+
+#page1 h1 {
+    font-size: 1.9rem;
+}
+
+
+#page1 p {
+    font-size: .85rem;
+}
+
+
+/* =====================================================
+   PAGE 2 - QUIZ
+===================================================== */
+
+#page2 {
+
+    background: rgba(255, 240, 243, .95);
+
+    border:
+        2px solid #e18795;
+
+    color: #7a4952;
+}
+
+
+.quiz-intro {
+    color: #8d5a65;
+}
+
+
+#quizProgress {
+
+    font-size: .75rem;
+
+    font-weight: 700;
+
+    color: #c75a6c;
+}
+
+
+.quiz-question {
+    display: none;
+}
+
+
+.quiz-question.active-question {
+
+    display: block;
+
+    animation:
+        questionIn .35s ease;
+}
+
+
+@keyframes questionIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateX(20px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateX(0);
+    }
+}
+
+
+.quiz-question h3 {
+
+    margin:
+        12px 0 18px;
+
+    font-size: 1.4rem;
+}
+
+
+.quiz-options {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.quiz-options button {
+
+    width: 100%;
+
+    background: #fff;
+
+    color: #c75a6c;
+
+    border:
+        2px solid #e18795;
+
+    box-shadow: none;
+}
+
+
+.quiz-options button:hover {
+
+    background: #e18795;
+
+    color: #fff;
+}
+
+
+.quiz-input {
+
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border:
+        2px solid #e18795;
+
+    border-radius: 12px;
+
+    outline: none;
+
+    font-family:
+        'Montserrat',
+        sans-serif;
+
+    font-size: .9rem;
+
+    margin-bottom: 10px;
+}
+
+
+.quiz-input:focus {
+
+    border-color: #b95967;
+
+    box-shadow:
+        0 0 7px
+        rgba(185,89,103,.3);
+}
+
+
+.submit-answer {
+    width: 100%;
+}
+
+
+#quizFeedback {
+
+    min-height: 22px;
+
+    font-size: .8rem;
+
+    font-weight: 700;
+
+    color: #c94a48;
+}
+
+
+#quizSuccess {
+
+    display: none;
+
+    padding: 18px;
+
+    background: #fff;
+
+    border:
+        2px solid #e18795;
+
+    border-radius: 14px;
+
+    color: #b94c5a;
+
+    font-size: .85rem;
+
+    animation:
+        pop .5s ease;
+}
+
+
+@keyframes pop {
+
+    0% {
+
+        transform: scale(.8);
+
+        opacity: 0;
+    }
+
+    100% {
+
+        transform: scale(1);
+
+        opacity: 1;
+    }
+}
+
+
+/* =====================================================
+   PUZZLE
+===================================================== */
+
+.puzzle-box {
+
+    background: #fff;
+
+    padding: 18px;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 3px 10px
+        rgba(220,106,90,.12);
+}
+
+
+.puzzle-letters {
+
+    font-size: 1.2rem;
+
+    font-weight: 700;
+
+    color: #d8697a;
+
+    letter-spacing: 5px;
+
+    margin: 10px 0;
+}
+
+
+.puzzle-box p {
+
+    font-size: 1rem;
+
+    line-height: 1.4;
+}
+
+
+/* =====================================================
+   PAGE 3 - MEMORIES
+===================================================== */
+
+#page3 {
+
+    background:
+        rgba(255, 240, 243, .95);
+
+    border:
+        2px solid #e18795;
+}
+
+
+.memories-gallery {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.memory {
+    width: 100%;
+    max-width: 350px;
+
+    /* WHITE INSIDE */
+    background: #ffffff;
+
+    border: 2px solid #f3a6b8;
+    border-radius: 18px;
+    padding: 10px;
+
+    /* PINK GLOW OUTSIDE */
+    box-shadow:
+        0 0 8px rgba(255, 150, 180, .45),
+        0 0 18px rgba(255, 170, 195, .3),
+        0 5px 15px rgba(220, 120, 150, .2);
+
+    animation: memoryGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes memoryGlow {
+    from {
+        box-shadow:
+            0 0 8px rgba(255, 150, 180, .4),
+            0 0 15px rgba(255, 170, 195, .25),
+            0 5px 15px rgba(220, 120, 150, .15);
+    }
+
+    to {
+        box-shadow:
+            0 0 14px rgba(255, 130, 170, .65),
+            0 0 28px rgba(255, 170, 200, .45),
+            0 5px 18px rgba(220, 120, 150, .25);
+    }
+}
+
+.memory img {
+
+    width: 100%;
+
+    height: auto;
+
+    max-height: none;
+
+    object-fit: contain;
+
+    border-radius: 8px;
+
+    display: block;
+
+    margin-bottom: 8px;
+}
+
+
+.memory p {
+    font-size: .75rem;
+}
+
+
+/* =====================================================
+   PAGE 4
+===================================================== */
+
+#page4 p {
+    font-size: .82rem;
+}
+
+
+.italic-bold {
+
+    font-style: italic;
+
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   PAGE 5
+===================================================== */
+
+#page5 {
+
+    background: rgba(255, 255, 255, .95);
+
+    border:
+        2px solid #e18795;
+
+    color: #7a4952;
+}
+
+
+#page5 h1 {
+    font-size: 1.8rem;
+}
+
+
+#buttonContainer {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    flex-wrap: wrap;
+}
+
+
+#noResponseMessage {
+
+    color: #c94a48 !important;
+
+    font-weight: 700;
+
+    font-size: .95rem;
+
+    text-align: center;
+
+    width: 100%;
+
+    margin: 0 auto;
+}
+
+
+ #noResponseGif {
+    width: 140px !important;
+    max-width: 70%;
+    height: auto;
+    display: block;
+    margin: 14px auto 2px;
+    padding: 8px;
+    background:
+        radial-gradient(circle at 8px 8px, #ffd45c 0 3px, transparent 4px),
+        radial-gradient(circle at calc(100% - 8px) 8px, #8bd2ff 0 3px, transparent 4px),
+        radial-gradient(circle at 8px calc(100% - 8px), #8bd2ff 0 3px, transparent 4px),
+        radial-gradient(circle at calc(100% - 8px) calc(100% - 8px), #ffd45c 0 3px, transparent 4px),
+        linear-gradient(135deg, #fffafd, #ffe8f0, #fff7fa);
+    border: 4px solid #e98ba4;
+    border-radius: 16px;
+    box-shadow:
+        0 0 0 3px #fff,
+        0 0 0 6px #f6b5c5,
+        0 5px 0 #c9657c,
+        0 8px 16px rgba(190, 90, 120, .2);
+    object-fit: contain;
+    animation: cuteGifGame 2s ease-in-out infinite;
+}
+
+@keyframes cuteGifGame {
+    0%, 100% {
+        transform: translateY(0) rotate(-1deg);
+        box-shadow:
+            0 0 0 3px #fff,
+            0 0 0 6px #f6b5c5,
+            0 5px 0 #c9657c,
+            0 8px 16px rgba(190, 90, 120, .2);
+    }
+
+    50% {
+        transform: translateY(-3px) rotate(1deg);
+        box-shadow:
+            0 0 0 3px #fff,
+            0 0 0 6px #f6b5c5,
+            0 7px 0 #c9657c,
+            0 11px 20px rgba(190, 90, 120, .25);
+    }
+}
+
+#noBtn {
+
+    background: transparent;
+
+    border:
+        2px solid #e18795;
+
+    color: #e18795;
+
+    box-shadow: none;
+}
+
+
+#noBtn:hover {
+
+    background: #e18795;
+
+    color: white;
+}
+
+
+/* =====================================================
+   PAGE 6 - CONTRACT
+===================================================== */
+
+#page6 {
+
+    background:
+        rgba(255, 240, 243, .95);
+
+    border:
+        2px solid #e18795;
+
+    color: #7a4952;
+}
+
+
+#page6 ul {
+
+    list-style: none;
+
+    padding: 0;
+
+    margin: 5px 0;
+}
+
+
+#page6 li {
+
+    position: relative;
+
+    margin: 5px 0;
+
+    padding-left: 24px;
+
+    padding-right: 24px;
+
+    font-size: .75rem;
+
+    line-height: 1.4;
+
+    color: #a65b68;
+
+    text-align: center;
+}
+
+
+#page6 li::before {
+
+    content: "✔️";
+
+    position: absolute;
+
+    left: 0;
+
+    top: 0;
+}
+
+
+#errorMessage {
+
+    display: none;
+
+    color: #c94a48;
+
+    font-size: .8rem;
+
+    font-weight: 700;
+}
+
+
+#successMessage {
+
+    display: none;
+
+    color: green;
+
+    font-size: .8rem;
+
+    font-weight: 700;
+}
+
+
+.signature-area {
+    text-align: left;
+}
+
+
+#signature {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border:
+        2px solid #e18795;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    font-family:
+        'Montserrat',
+        sans-serif;
+
+    margin-bottom: 10px;
+}
+
+
+#signature:focus {
+
+    border-color: #b95967;
+
+    box-shadow:
+        0 0 8px
+        rgba(185,89,103,.25);
+}
+
+
+/* =====================================================
+   PAGE 7
+===================================================== */
+
+#page7 {
+
+    padding:
+        38px 25px;
+}
+
+
+#responseText {
+
+    white-space: pre-wrap;
+
+    font-size: .75rem;
+
+    color: #a65b68;
+
+    line-height: 1.6;
+
+    font-weight: 500;
+}
+
+
+#page7 img {
+
+    width: 150px;
+
+    border-radius: 12px;
+
+    margin: 10px auto;
+}
+
+
+/* =====================================================
+   BROKEN HEARTS
+===================================================== */
+
+#noErrorParticles {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 999;
+
+}
+
+
+.error-particle {
+
+    position: absolute;
+
+    font-size: 24px;
+
+    animation:
+        fallHeart 2.5s linear forwards;
+}
+
+
+@keyframes fallHeart {
+
+    0% {
+
+        transform:
+            translateY(-30px)
+            rotate(0);
+
+        opacity: 1;
+    }
+
+    100% {
+
+        transform:
+            translateY(100vh)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   CONFETTI
+===================================================== */
+
+#confettiCanvas {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    pointer-events: none;
+
+    z-index: 9999;
+
+    display: none;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .page {
+
+        width:
+            calc(100% - 18px);
+
+        padding:
+            25px 17px;
+
+        max-height:
+            calc(100dvh - 115px);
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    #page1 h1 {
+        font-size: 2rem;
+    }
+
+    .memory img {
+        max-height: none;
+    }
+
+}
+
+
+/* =====================================================
+   MUSIC PLAYER
+===================================================== */
+
+.audio-container {
+
+    position: fixed;
+
+    bottom: 10px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 10000;
+
+    width:
+        min(450px, calc(100% - 30px));
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 0;
+
+    background: transparent;
+
+    border: none;
+
+    box-shadow: none;
+}
+
+
+.audio-container audio {
+
+    width: 50%;
+
+    height: 10px;
+}
+
+
+/* =====================================================
+   EXTRA HEART SPARKLES AROUND CARD
+===================================================== */
+
+.page::before,
+.page::after {
+
+    content: "♡";
+
+    position: fixed;
+
+    color: rgba(230, 105, 135, .25);
+
+    font-size: 45px;
+
+    pointer-events: none;
+
+    animation:
+        cardHeartPulse 3s ease-in-out infinite;
+}
+
+
+.page::before {
+
+    top: 10px;
+
+    left: 12px;
+}
+
+
+.page::after {
+
+    bottom: 10px;
+
+    right: 12px;
+
+    animation-delay: 1.5s;
+}
+
+
+@keyframes cardHeartPulse {
+
+    0%,
+    100% {
+
+        transform:
+            scale(.8)
+            rotate(-10deg);
+
+        opacity: .25;
+    }
+
+    50% {
+
+        transform:
+            scale(1.15)
+            rotate(10deg);
+
+        opacity: .55;
+    }
+}
+
+</style>
+
+
+<style id="cute-mario-scroll-fix">
+/* ===== CUTE MARIO-INSPIRED PAGE BORDER ===== */
+.page {
+    border: 4px solid #e98ba4 !important;
+    border-radius: 18px !important;
+    box-shadow:
+        0 0 0 3px #fff,
+        0 0 0 6px #f6b5c5,
+        0 7px 0 #c9657c,
+        0 12px 25px rgba(180,90,120,.22) !important;
+    position: relative;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    background:
+        radial-gradient(circle at 12px 12px, rgba(255,214,92,.75) 0 3px, transparent 4px),
+        radial-gradient(circle at calc(100% - 12px) 12px, rgba(139,210,255,.75) 0 3px, transparent 4px),
+        radial-gradient(circle at 12px calc(100% - 12px), rgba(139,210,255,.6) 0 3px, transparent 4px),
+        radial-gradient(circle at calc(100% - 12px) calc(100% - 12px), rgba(255,214,92,.75) 0 3px, transparent 4px),
+        #fffdfd !important;
+    scrollbar-width: thin;
+    scrollbar-color: #e98ba4 #ffe8ef;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Cute game-style scrollbar */
+.page::-webkit-scrollbar {
+    width: 9px;
+}
+
+.page::-webkit-scrollbar-track {
+    background: #ffe8ef;
+    border-radius: 10px;
+    margin: 10px 2px;
+}
+
+.page::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #ffabc0, #e98ba4);
+    border: 2px solid #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 0 #c9657c;
+}
+
+.page::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #ff9db4, #df7189);
+}
+
+/* Memories page gets a slightly more visible scrollbar */
+#page3 {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    scrollbar-width: auto;
+    scrollbar-color: #e18795 #ffe8ef;
+}
+
+#page3::-webkit-scrollbar {
+    width: 11px;
+}
+
+#page3::-webkit-scrollbar-track {
+    background: #ffe8ef;
+    border-radius: 12px;
+    margin: 8px 2px;
+    border: 1px solid #f6b5c5;
+}
+
+#page3::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #f6a0b5, #e18795);
+    border: 2px solid #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 0 #c9657c;
+}
+
+/* Decorative game icons */
+.page::before,
+.page::after {
+    position: absolute !important;
+    pointer-events: none !important;
+    z-index: 20 !important;
+    font-family: Arial, sans-serif !important;
+    font-weight: 900 !important;
+    animation: cuteGameFloat 2s ease-in-out infinite !important;
+}
+
+.page::before {
+    content: "✦" !important;
+    top: 7px !important;
+    left: 10px !important;
+    color: #ffd45c !important;
+    font-size: 20px !important;
+    text-shadow: 1px 1px 0 #d99b28 !important;
+}
+
+.page::after {
+    content: "♡" !important;
+    bottom: 6px !important;
+    right: 10px !important;
+    color: #ff8fab !important;
+    font-size: 20px !important;
+    text-shadow: 1px 1px 0 #c75a6c !important;
+    animation-delay: .8s !important;
+}
+
+@keyframes cuteGameFloat {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-4px) rotate(5deg); }
+}
+
+/* Game-like buttons */
+button {
+    border: 3px solid #c75a6c !important;
+    border-radius: 12px !important;
+    padding: 12px 24px !important;
+    background: #f28fa8 !important;
+    color: #fff !important;
+    box-shadow:
+        0 4px 0 #c75a6c,
+        0 6px 10px rgba(190,90,120,.2) !important;
+}
+
+button:hover {
+    background: #ff9db4 !important;
+    transform: translateY(-2px) !important;
+    box-shadow:
+        0 6px 0 #c75a6c,
+        0 8px 14px rgba(190,90,120,.2) !important;
+}
+
+button:active {
+    transform: translateY(3px) !important;
+    box-shadow: 0 2px 0 #c75a6c !important;
+}
+
+@media (max-width: 480px) {
+    .page {
+        max-height: calc(100dvh - 115px);
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+}
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     ROMANTIC HEART BACKGROUND
+===================================================== -->
+
+<div id="loveHearts"></div>
+
+
+<!-- =====================================================
+     PAGE 1 — INTRO
+===================================================== -->
+
+<div class="page active" id="page1">
+
+    <h1>
+        You’re Not Here by Accident.
+    </h1>
+
+    <p>
+
+        There’s a reason you made it this far.
+
+        <br><br>
+
+        But before you see what comes next...
+
+        <br>
+
+        I need to know if you really know me.
+
+    </p>
+
+    <button onclick="goToPage(2)">
+        Continue →
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     PAGE 2 — LOVE QUIZ
+===================================================== -->
+
+<div class="page" id="page2">
+
+    <h1>
+        Prove You Know Me 🔐
+    </h1>
+
+    <p class="quiz-intro">
+
+        Answer all 10 questions correctly.
+
+        <br>
+
+        Only then can you unlock our memories.
+
+    </p>
+
+    <div id="quizProgress">
+        Question 1 of 10
+    </div>
+
+
+    <!-- QUESTION 1 -->
+
+    <div
+        class="quiz-question active-question"
+        data-question="1"
+    >
+
+        <h3>
+            When is my birthday?
+        </h3>
+
+        <div class="quiz-options">
+
+            <button onclick="checkAnswer(1,'November 8')">
+                November 8
+            </button>
+
+            <button onclick="checkAnswer(1,'November 6')">
+                November 6
+            </button>
+
+            <button onclick="checkAnswer(1,'November 16')">
+                November 16
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUESTION 2 -->
+
+    <div
+        class="quiz-question"
+        data-question="2"
+    >
+
+        <h3>
+            Where do I live?
+        </h3>
+
+        <div class="quiz-options">
+
+            <button onclick="checkAnswer(2,'Cebu City')">
+                Cebu City
+            </button>
+
+            <button onclick="checkAnswer(2,'Manila')">
+                Manila
+            </button>
+
+            <button onclick="checkAnswer(2,'Davao')">
+                Davao
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUESTION 3 -->
+
+    <div
+        class="quiz-question"
+        data-question="3"
+    >
+
+        <h3>
+            What's my nephew's name?
+        </h3>
+
+        <div class="quiz-options">
+
+            <button onclick="checkAnswer(3,'Marcus')">
+                Marcus
+            </button>
+
+            <button onclick="checkAnswer(3,'Matthew')">
+                Matthew
+            </button>
+
+            <button onclick="checkAnswer(3,'Murphy')">
+                Murphy
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUESTION 4 -->
+
+    <div
+        class="quiz-question"
+        data-question="4"
+    >
+
+        <h3>
+            What's my nickname?
+        </h3>
+
+        <div class="quiz-options">
+
+            <button onclick="checkAnswer(4,'Gab')">
+                Gab
+            </button>
+
+            <button onclick="checkAnswer(4,'Gabby')">
+                Gabby
+            </button>
+
+            <button onclick="checkAnswer(4,'Gabo')">
+                Gabo
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUESTION 5 -->
+
+    <div
+        class="quiz-question"
+        data-question="5"
+    >
+
+        <h3>
+            What's something I always cook?
+        </h3>
+
+        <div class="quiz-options">
+
+            <button onclick="checkAnswer(5,'Adobo')">
+                Adobo
+            </button>
+
+            <button onclick="checkAnswer(5,'Sinigang')">
+                Sinigang
+            </button>
+
+            <button onclick="checkAnswer(5,'Tinola')">
+                Tinola
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUESTION 6 -->
+
+    <div
+        class="quiz-question"
+        data-question="6"
+    >
+
+        <h3>
+            What do I call you?
+        </h3>
+
+        <input
+            class="quiz-input"
+            id="answer6"
+            type="text"
+            placeholder="Type your answer..."
+            autocomplete="off"
+        >
+
+        <button
+            class="submit-answer"
+            onclick="checkTextAnswer(6)"
+        >
+            Submit 💗
+        </button>
+
+    </div>
+
+
+    <!-- QUESTION 7 -->
+
+    <div
+        class="quiz-question"
+        data-question="7"
+    >
+
+        <h3>
+             What’s one thing you can always <br>count on me to give you?
+        </h3>
+
+        <input
+            class="quiz-input"
+            id="answer7"
+            type="text"
+            placeholder="Type your answer..."
+            autocomplete="off"
+        >
+
+        <button
+            class="submit-answer"
+            onclick="checkTextAnswer(7)"
+        >
+            Submit 💗
+        </button>
+
+    </div>
+
+
+    <!-- QUESTION 8 -->
+
+    <div
+        class="quiz-question"
+        data-question="8"
+    >
+
+        <h3>
+            What do we usually do when we miss each other?
+        </h3>
+
+        <div class="quiz-options">
+
+            <button onclick="checkAnswer(8,'Rage bait')">
+                Rage bait
+            </button>
+
+            <button onclick="checkAnswer(8,'Call')">
+                Call
+            </button>
+
+            <button onclick="checkAnswer(8,'Play Games')">
+                Play Games
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUESTION 9 -->
+
+    <div
+        class="quiz-question"
+        data-question="9"
+    >
+
+        <h3>
+            What's something that always makes me smile?
+        </h3>
+
+        <input
+            class="quiz-input"
+            id="answer9"
+            type="text"
+            placeholder="Type your answer..."
+            autocomplete="off"
+        >
+
+        <button
+            class="submit-answer"
+            onclick="checkTextAnswer(9)"
+        >
+            Submit 💗
+        </button>
+
+    </div>
+
+
+    <!-- QUESTION 10 -->
+
+    <div
+        class="quiz-question"
+        data-question="10"
+    >
+
+        <h3>
+            Final Puzzle. 🧩
+        </h3>
+
+        <div class="puzzle-box">
+
+            <p>
+                Unscramble the letters:
+            </p>
+
+            <div class="puzzle-letters">
+                E R V E A S P N C E R E
+            </div>
+
+            <p>
+
+                Hint:
+
+                <br>
+
+                Continuing to hold on and work through difficulties together.
+
+            </p>
+
+        </div>
+
+        <br>
+
+        <input
+            class="quiz-input"
+            id="answer10"
+            type="text"
+            placeholder="What's the word?"
+            autocomplete="off"
+        >
+
+        <button
+            class="submit-answer"
+            onclick="checkTextAnswer(10)"
+        >
+            Unlock 🔐
+        </button>
+
+    </div>
+
+
+    <p id="quizFeedback"></p>
+
+
+    <div id="quizSuccess">
+
+        🔓 <strong>ACCESS GRANTED!</strong>
+
+        <br><br>
+
+        You really do know me. ❤️
+
+        <br><br>
+
+        <button onclick="goToPage(3)">
+            Open Our Memories →
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PAGE 3 — MEMORIES
+===================================================== -->
+
+<div class="page" id="page3">
+
+    <h1>
+
+        Our Story,
+
+        <br>
+
+        Kept in Little Moments.
+
+    </h1>
+
+    <p>
+
+        Remember this?
+
+        <br>
+
+        Because moments like this are worth keeping.
+
+    </p>
+
+
+    <div class="memories-gallery">
+
+
+        <div class="memory">
+
+            <img
+                src="https://64.media.tumblr.com/792a9af527100694eeec6aa9f905e592/4ddc306b53167e2d-d6/s1280x1920/b775c4abcd08e78633ed8925c53d4462a1b39d89.jpg"
+                alt="Memory 1"
+            >
+
+             <p>
+                I was supposed to be working,
+                but somehow, <br> you still found a little way into my day.
+            </p>
+
+        </div>
+
+
+        <div class="memory">
+
+            <img
+                src="https://64.media.tumblr.com/fff07a8b22f08f9b303d40dcd3d342c9/9821eecf0445ea69-de/s1280x1920/157b8500869433d55808cb2c485523d073b90704.jpg"
+                alt="Memory 2"
+            >
+
+            <p>
+                <strong>Deep conversations with you just hit differently.</strong>
+                <br><i>I love how we can talk about anything,
+                
+                be honest with each other,
+                
+                and somehow leave each conversation
+                
+                understanding each other a little more.</i>
+                
+            </p>
+
+        </div>
+
+
+        <div class="memory">
+
+            <img
+                src="https://64.media.tumblr.com/2aaecefcef7a6a504d9d9ab37def79d2/85a992902c771dff-a8/s1280x1920/b8c82127b5703411f333655bbd630fa9b274b36b.jpg"
+                alt="Memory 3"
+            >
+
+            <p>
+
+                Different clocks, same little routine.
+
+                <br>
+
+                You fall asleep, I stay on the call.
+
+            </p>
+
+        </div>
+
+
+        <div class="memory">
+
+            <img
+                src="https://64.media.tumblr.com/d1bd670d659ab0bbd4760bf4bc44f6a6/2de54427e0a26154-bb/s1280x1920/3a3db5c91c297047fbb405dac6a5f2b6b74d169d.jpg"
+                alt="Memory 4"
+            >
+
+             <p>
+                I love how you always keep me updated,
+                <br>
+                even when I haven’t asked.
+                <br>
+                It’s a little thing,
+                <br>
+                but it reminds me that I’m always
+                <br>
+                somewhere in your thoughts.
+            </p>
+
+
+        </div>
+
+
+        <div class="memory">
+
+            <img
+                src="https://64.media.tumblr.com/f51576a54962af43d5ff56afab893c0b/1cb19492fcfd76cc-95/s1280x1920/beeb3aff24564a85745f9c3a40b8ed9ff9249315.jpg"
+                alt="Memory 5"
+            >
+
+            <p>
+                When I ask you to wake me up, you call me,
+                <br>
+                even if I don't always wake up or answer your calls immediately.
+            </p>
+        </div>
+
+
+        <div class="memory">
+
+            <img
+                src="https://64.media.tumblr.com/01ba7ca106fecc0801091cab98256819/5b6e0135cecf56cc-4a/s1280x1920/bd49764554c965a74fd3b06697db14e3db165073.jpg"
+                alt="Memory 6"
+            >
+
+              <p>
+                <strong>There’s something about making you blush
+                <br>
+                that I’ll never get tired of.</strong><br>
+                <i>I love how you bring out
+                the most genuine side of me,
+                while letting me bring out
+                that playful side of you.</i>
+                
+            </p>
+
+        </div>
+
+
+        <div class="memory">
+
+            <img
+                src="https://64.media.tumblr.com/6c8df6e9e84c4f77ae751ad5c514156b/394ba7e99d718a17-f3/s1280x1920/828ed1300c862f56832031131ba501c191918f15.jpg"
+                alt="Memory 7"
+            >
+
+           <p>
+                We may argue from miles away,
+                <br>
+                but we never let the distance
+                <br>
+                keep us from talking things through.
+                <br>
+                Somehow, we always find our way
+                <br>
+                back to each other.
+            </p>
+        </div>
+
+
+    </div>
+
+
+    <button onclick="goToPage(4)">
+        Continue →
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     PAGE 4 — LOVE MESSAGE
+===================================================== -->
+
+<div class="page" id="page4">
+
+    <h1>
+        You’ve Become My Favorite Part of Life
+    </h1>
+
+    <p>
+
+        The more time I spend with you,
+        the more I realize just how deeply connected we are.
+        It’s like the universe conspired to bring us together,
+        and I can’t help but feel that every moment we share,
+        no matter how big or small, is a blessing.
+
+    </p>
+
+    <p>
+
+        With you, I feel seen, understood, and loved
+        in ways I never thought possible.
+
+    </p>
+
+    <p>
+
+        I know we won’t always have perfect days.
+
+        <br>
+
+        We’ll have misunderstandings,
+        bad days,
+        and moments when things get difficult.
+
+    </p>
+
+    <p>
+
+        But I want you to know that I’m willing to stay,
+        listen, understand,
+        and work things out with you.
+
+    </p>
+
+    <p>
+
+        I don’t expect everything to be perfect.
+
+        <br>
+
+        I just want us to keep choosing each other
+        even when things aren’t easy.
+
+    </p>
+
+    <p>
+
+        So, I want to make this more than just words.
+
+        <br>
+
+        I want to make it real.
+        I want to build something lasting,
+        something filled with love,
+        laughter, and memories.
+
+    </p>
+
+    <p class="italic-bold">
+        Can I ask you something?
+    </p>
+
+    <button onclick="goToPage(5)">
+        Next →
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     PAGE 5 — PROPOSAL
+===================================================== -->
+
+<div class="page" id="page5">
+
+    <h1>
+        Will You Be My Girlfriend?
+    </h1>
+
+    <p>
+
+        Because I can’t think of anyone else
+        I’d rather do this with.
+
+    </p>
+
+
+    <div id="buttonContainer">
+
+        <button
+            id="yesBtn"
+            onclick="sayYes()"
+        >
+            Yes
+        </button>
+
+        <button
+            id="noBtn"
+            onclick="handleNo()"
+        >
+            No
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PAGE 6 — LOVE CONTRACT
+===================================================== -->
+
+<div class="page" id="page6">
+
+    <h2>
+        Love Contract Agreement!
+    </h2>
+
+    <p>
+
+        Issued by:
+
+        <strong>
+            Love Without Expiry, Inc.
+        </strong>
+
+        <br><br>
+
+    </p>
+
+    <p>
+
+        This is to
+
+        <strong>
+            officially declare
+        </strong>
+
+        that:
+
+    </p>
+
+    <h3>
+        Joana Mae Cano
+    </h3>
+
+    <p>
+
+        has courageously and voluntarily agreed
+        to be the:
+
+    </p>
+
+    <h4>
+        Girlfriend of Gab
+    </h4>
+
+    <p>
+
+        With all the rights, privileges,
+        and sacred duties of being:
+
+    </p>
+
+
+    <ul>
+
+        <li>
+            Emotional Support Human
+        </li>
+
+        <li>
+            Forever My Favorite Notification
+        </li>
+
+        <li>
+            Unlimited Kiss Provider
+        </li>
+
+        <li>
+            Kalma Coach During Panic Moments
+        </li>
+
+        <li>
+            Keeper of Secrets
+        </li>
+
+        <li>
+            Personal Cheerleader
+        </li>
+
+        <li>
+            Protector of Heart and Happiness
+        </li>
+
+        <li>
+            Forever Choice, No Backspace
+        </li>
+
+        <li>
+            Unlimited Video Call Rights
+        </li>
+
+        <li>
+            Emergency “Call Me” Contact
+        </li>
+
+        <li>
+            Forever Partner in Kakulitan & Drama
+        </li>
+
+        <li>
+
+            Official Good Morning & Good Night Sender,
+
+            <br>
+
+            Regardless of Time Zone
+
+        </li>
+
+    </ul>
+
+
+    <p>
+
+        Effective immediately
+        and valid for all lifetimes to come.
+
+    </p>
+
+
+    <p>
+
+        <em>
+
+            No returns. No exchanges. No cancellations.
+
+            <br>
+
+            Long-distance? Yes. Temporary? Never.
+
+        </em>
+
+    </p>
+
+
+    <hr
+        style="
+            border:none;
+            border-top:1px solid #e7a8b4;
+            width:80%;
+        "
+    >
+
+
+    <p>
+
+        <strong>
+            FINAL TERMS & CONDITIONS
+        </strong>
+
+    </p>
+
+
+    <p>
+
+        Leaving is strictly prohibited.
+
+        <br>
+
+        Ghosting is a serious violation of this agreement.
+
+        <br>
+
+        Too busy? At least send one “I miss you.”
+
+        <br>
+
+        Random selfies may be requested at any time.
+
+        <br>
+
+        Cuddles and kisses accumulated during the LDR period
+        shall be paid in full upon reunion.
+
+        <br>
+
+        Arguments shall not constitute grounds for termination.
+
+        <br>
+
+        “Goodnight” may not be skipped without valid reason.
+
+        <br>
+
+        This contract automatically renews forever.
+
+    </p>
+
+
+    <div class="signature-area">
+
+        <label
+            for="signature"
+            style="
+                display:block;
+                font-weight:600;
+                font-size:.8rem;
+                margin-bottom:6px;
+                color:#b94c5a;
+            "
+        >
+
+            Sign here with your full name to accept ✍️
+
+        </label>
+
+
+        <input
+            type="text"
+            id="signature"
+            placeholder="Type your full name here..."
+            autocomplete="off"
+        >
+
+
+        <p id="errorMessage">
+            Oops! You entered your name wrong.
+        </p>
+
+
+        <p id="successMessage">
+            Name entered correctly!
+        </p>
+
+
+        <button onclick="submitSignature()">
+            Accept & Confirm
+        </button>
+
+    </div>
+
+
+    <img
+        src="https://media.tenor.com/I_rw0vcOXJYAAAAj/dudu-bubu-cute-kiss.gif"
+        alt="Cute kiss"
+        style="
+            width:70px;
+            margin:10px auto;
+            border-radius:12px;
+        "
+    >
+
+
+    <p>
+
+        <em>
+
+            Officially sealed with love.
+
+            <br>
+
+            Congratulations.
+            You are officially stuck with me.
+
+        </em>
+
+    </p>
+
+
+    <p>
+
+        Signed date:
+
+        <span id="joanaSignedDate"></span>
+
+    </p>
+
+</div>
+
+
+<!-- =====================================================
+     PAGE 7 — FINAL
+===================================================== -->
+
+<div class="page" id="page7">
+
+    <h1>
+          So, Here We Are.
+
+
+
+ 
+    </h1>
+
+
+    <p>
+
+      And somehow, we made it here.
+
+    
+
+    </p>
+
+
+    <pre id="responseText"></pre>
+
+</div>
+
+
+<!-- =====================================================
+     CONFETTI
+===================================================== -->
+
+<canvas id="confettiCanvas"></canvas>
+
+
+<!-- =====================================================
+     MUSIC PLAYER
+===================================================== -->
+
+<div class="audio-container">
+
+    <audio controls autoplay loop>
+
+        <source
+            src="https://hipstrumentals.com/wp-content/uploads/2026/07/Taylor-Swift-Paper-Rings-Instrumental-Prod.-By-Taylor-Swift-Jack-Antonoff.mp3"
+            type="audio/mpeg"
+        />
+
+        Your browser does not support the audio element.
+
+    </audio>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   CUSTOM ANSWERS
+===================================================== */
+
+const customAnswers = {
+
+    6: "gang",
+
+    7: "consistency",
+
+    9: "i miss you"
+
+};
+
+
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
+
+const pages =
+    document.querySelectorAll(".page");
+
+
+function goToPage(number) {
+
+    pages.forEach(page => {
+
+        page.classList.remove("active");
+
+    });
+
+
+    const target =
+        document.getElementById(
+            "page" + number
+        );
+
+
+    if (target) {
+
+        target.classList.add("active");
+
+        target.scrollTop = 0;
+
+    }
+
+}
+
+
+/* =====================================================
+   QUIZ SYSTEM
+===================================================== */
+
+let currentQuestion = 1;
+
+const totalQuestions = 10;
+
+
+const quizFeedback =
+    document.getElementById(
+        "quizFeedback"
+    );
+
+
+function normalizeAnswer(answer) {
+
+    return answer
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, " ");
+
+}
+
+
+function updateProgress() {
+
+    document.getElementById(
+        "quizProgress"
+    ).textContent =
+        "Question " +
+        currentQuestion +
+        " of " +
+        totalQuestions;
+
+}
+
+
+function showQuestion(number) {
+
+    document
+        .querySelectorAll(".quiz-question")
+        .forEach(question => {
+
+            question.classList.remove(
+                "active-question"
+            );
+
+        });
+
+
+    const question =
+        document.querySelector(
+            `.quiz-question[data-question="${number}"]`
+        );
+
+
+    if (question) {
+
+        question.classList.add(
+            "active-question"
+        );
+
+    }
+
+
+    currentQuestion = number;
+
+    updateProgress();
+
+    quizFeedback.textContent = "";
+
+}
+
+
+/* =====================================================
+   WRONG ANSWER
+===================================================== */
+
+const wrongMessages = [
+
+    "❌ Nope! Try again, baby. 😏",
+
+    "❌ Hmm... you should know this one. 😂",
+
+    "❌ Wrong! Think harder. ❤️",
+
+    "❌ Nice try! But that's not it. 🥺",
+
+    "❌ Access denied! 🔐",
+
+    "❌ Are you sure you know me? 😭❤️"
+
+];
+
+
+function wrongAnswer() {
+
+    const random =
+        wrongMessages[
+            Math.floor(
+                Math.random() *
+                wrongMessages.length
+            )
+        ];
+
+
+    quizFeedback.textContent =
+        random;
+
+
+    const active =
+        document.querySelector(
+            ".active-question"
+        );
+
+
+    if (active) {
+
+        active.style.animation = "none";
+
+        void active.offsetWidth;
+
+        active.style.animation =
+            "questionShake .4s ease";
+
+    }
+
+}
+
+
+/* =====================================================
+   CORRECT ANSWER
+===================================================== */
+
+function correctAnswer() {
+
+    quizFeedback.style.color =
+        "#4d9b68";
+
+
+    quizFeedback.textContent =
+        "✅ Correct!";
+
+
+    setTimeout(() => {
+
+        quizFeedback.style.color =
+            "#c94a48";
+
+
+        if (
+            currentQuestion <
+            totalQuestions
+        ) {
+
+            showQuestion(
+                currentQuestion + 1
+            );
+
+        } else {
+
+            unlockQuiz();
+
+        }
+
+    }, 600);
+
+}
+
+
+/* =====================================================
+   MULTIPLE CHOICE
+===================================================== */
+
+function checkAnswer(
+    questionNumber,
+    answer
+) {
+
+    let correct = false;
+
+
+    if (questionNumber === 1) {
+
+        correct =
+            normalizeAnswer(answer)
+            === "november 6";
+
+    }
+
+
+    if (questionNumber === 2) {
+
+        correct =
+            normalizeAnswer(answer)
+            === "cebu city";
+
+    }
+
+
+    if (questionNumber === 3) {
+
+        correct =
+            normalizeAnswer(answer)
+            === "murphy";
+
+    }
+
+
+    if (questionNumber === 4) {
+
+        correct =
+            normalizeAnswer(answer)
+            === "gabby";
+
+    }
+
+
+    if (questionNumber === 5) {
+
+        correct =
+            normalizeAnswer(answer)
+            === "tinola";
+
+    }
+
+
+    if (questionNumber === 8) {
+
+        correct =
+            normalizeAnswer(answer)
+            === "call";
+
+    }
+
+
+    if (correct) {
+
+        correctAnswer();
+
+    } else {
+
+        wrongAnswer();
+
+    }
+
+}
+
+
+/* =====================================================
+   TEXT QUESTIONS
+===================================================== */
+
+function checkTextAnswer(questionNumber) {
+
+    const input =
+        document.getElementById(
+            "answer" + questionNumber
+        );
+
+
+    if (!input)
+        return;
+
+
+    const entered =
+        normalizeAnswer(
+            input.value
+        );
+
+
+    if (questionNumber === 10) {
+
+        if (
+            entered ===
+            "perseverance"
+        ) {
+
+            correctAnswer();
+
+        } else {
+
+            wrongAnswer();
+
+            input.value = "";
+
+        }
+
+        return;
+
+    }
+
+
+    const expected =
+        normalizeAnswer(
+            customAnswers[
+                questionNumber
+            ]
+        );
+
+
+    if (
+        expected !==
+        "your answer here" &&
+        entered === expected
+    ) {
+
+        correctAnswer();
+
+    } else {
+
+        wrongAnswer();
+
+        input.value = "";
+
+    }
+
+}
+
+
+/* =====================================================
+   UNLOCK PAGE 3
+===================================================== */
+
+function unlockQuiz() {
+
+    document
+        .querySelectorAll(".quiz-question")
+        .forEach(question => {
+
+            question.style.display =
+                "none";
+
+        });
+
+
+    document.getElementById(
+        "quizProgress"
+    ).textContent =
+        "✨ Challenge Complete! ✨";
+
+
+    quizFeedback.textContent = "";
+
+
+    document.getElementById(
+        "quizSuccess"
+    ).style.display =
+        "block";
+
+}
+
+
+/* =====================================================
+   ENTER KEY
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key !== "Enter"
+        )
+            return;
+
+
+        const active =
+            document.querySelector(
+                ".quiz-question.active-question"
+            );
+
+
+        if (!active)
+            return;
+
+
+        const number =
+            Number(
+                active.dataset.question
+            );
+
+
+        if (
+            number === 6 ||
+            number === 7 ||
+            number === 9 ||
+            number === 10
+        ) {
+
+            checkTextAnswer(
+                number
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   RESET QUIZ
+===================================================== */
+
+function resetQuiz() {
+
+    currentQuestion = 1;
+
+
+    document
+        .querySelectorAll(
+            ".quiz-question"
+        )
+        .forEach(question => {
+
+            question.style.display = "";
+
+            question.classList.remove(
+                "active-question"
+            );
+
+        });
+
+
+    const first =
+        document.querySelector(
+            '.quiz-question[data-question="1"]'
+        );
+
+
+    if (first) {
+
+        first.classList.add(
+            "active-question"
+        );
+
+    }
+
+
+    document.getElementById(
+        "quizSuccess"
+    ).style.display =
+        "none";
+
+
+    quizFeedback.textContent = "";
+
+
+    updateProgress();
+
+}
+
+
+/* =====================================================
+   PROPOSAL
+===================================================== */
+
+let noTries = 0;
+
+
+const noMessages = [
+
+    "BAKIT KA NAG NO? 😭",
+
+    "INULIT PA TALAGA! 😭",
+
+    "INIINIS MO BA TALAGA AKO? 😭",
+
+    "MAG YES KA NA! ❤️",
+
+    "SAY YES NA PLEASE! 🥺"
+
+];
+
+
+const noGifs = [
+
+    "https://media1.tenor.com/m/67hJkk5s-H4AAAAC/crying-crying-cat.gif",
+
+    "https://media1.tenor.com/m/5TsvyTdZ3GAAAAAd/pleurer-pleure.gif",
+
+    "https://media1.tenor.com/m/n8isnUTpIp0AAAAd/angry-inside-out.gif",
+
+    "https://media.tenor.com/-Oes-vO2J-sAAAAj/milk-and-mocha.gif",
+
+    "https://media.tenor.com/Bj48ngeLwUkAAAAi/yes.gif"
+
+];
+
+
+function handleNo() {
+
+    noTries++;
+
+    createBrokenHearts();
+
+
+    if (noTries <= 5) {
+
+        const container =
+            document.getElementById(
+                "buttonContainer"
+            );
+
+
+        const oldMsg =
+            document.getElementById(
+                "noResponseMessage"
+            );
+
+
+        const oldGif =
+            document.getElementById(
+                "noResponseGif"
+            );
+
+
+        if (oldMsg)
+            oldMsg.remove();
+
+
+        if (oldGif)
+            oldGif.remove();
+
+
+        const message =
+            document.createElement("p");
+
+
+        message.id =
+            "noResponseMessage";
+
+
+        message.textContent =
+            noMessages[
+                noTries - 1
+            ];
+
+
+        const gif =
+            document.createElement("img");
+
+
+        gif.id =
+            "noResponseGif";
+
+
+        gif.src =
+            noGifs[
+                noTries - 1
+            ];
+
+
+        gif.alt =
+            "Sad reaction";
+
+
+        container.after(
+            message
+        );
+
+
+        message.after(
+            gif
+        );
+
+    }
+
+}
+
+
+function sayYes() {
+    goToPage(6);
+}
+/* =====================================================
+   BROKEN HEART RAIN
+===================================================== */
+
+function createBrokenHearts() {
+
+    let container =
+        document.getElementById(
+            "noErrorParticles"
+        );
+
+
+    if (!container) {
+
+        container =
+            document.createElement(
+                "div"
+            );
+
+        container.id =
+            "noErrorParticles";
+
+
+        document.body.appendChild(
+            container
+        );
+
+    }
+
+
+    for (
+        let i = 0;
+        i < 20;
+        i++
+    ) {
+
+        const heart =
+            document.createElement(
+                "div"
+            );
+
+
+        heart.className =
+            "error-particle";
+
+
+        heart.textContent =
+            "💔";
+
+
+        heart.style.left =
+            Math.random() *
+            window.innerWidth +
+            "px";
+
+
+        heart.style.top =
+            "-30px";
+
+
+        heart.style.animationDelay =
+            Math.random() +
+            "s";
+
+
+        container.appendChild(
+            heart
+        );
+
+    }
+
+
+    setTimeout(() => {
+
+        if (container)
+            container.remove();
+
+    }, 3500);
+
+}
+
+
+/* =====================================================
+   LOVE CONTRACT
+===================================================== */
+
+function submitSignature() {
+
+    const correctName =
+        "joana mae c. cano";
+
+
+    const input =
+        document.getElementById(
+            "signature"
+        );
+
+
+    const entered =
+        normalizeAnswer(
+            input.value
+        );
+
+
+    const error =
+        document.getElementById(
+            "errorMessage"
+        );
+
+
+    const success =
+        document.getElementById(
+            "successMessage"
+        );
+
+
+    error.style.display =
+        "none";
+
+
+    success.style.display =
+        "none";
+
+
+    if (
+        entered ===
+        correctName
+    ) {
+
+        success.style.display =
+            "block";
+
+
+        const now =
+            new Date();
+
+
+        const options = {
+
+            year: "numeric",
+
+            month: "long",
+
+            day: "numeric",
+
+            timeZone:
+                "Asia/Manila"
+
+        };
+
+
+        document.getElementById(
+            "joanaSignedDate"
+        ).textContent =
+            now.toLocaleDateString(
+                "en-US",
+                options
+            );
+
+
+        setTimeout(() => {
+
+            goToPage(7);
+
+            startConfetti();
+
+        }, 1200);
+
+
+    } else {
+
+        error.style.display =
+            "block";
+
+
+        input.value = "";
+
+    }
+
+}
+
+
+/* =====================================================
+   CONFETTI
+===================================================== */
+
+const canvas =
+    document.getElementById(
+        "confettiCanvas"
+    );
+
+
+const ctx =
+    canvas.getContext("2d");
+
+
+let confetti = [];
+
+let confettiAnimation;
+
+
+function startConfetti() {
+
+    canvas.style.display =
+        "block";
+
+
+    canvas.width =
+        window.innerWidth;
+
+
+    canvas.height =
+        window.innerHeight;
+
+
+    confetti = [];
+
+
+    for (
+        let i = 0;
+        i < 180;
+        i++
+    ) {
+
+        confetti.push({
+
+            x:
+                Math.random() *
+                canvas.width,
+
+            y:
+                Math.random() *
+                -canvas.height,
+
+            size:
+                Math.random() *
+                7 + 3,
+
+            speed:
+                Math.random() *
+                4 + 2,
+
+            color:
+                `hsl(${Math.random() * 360},80%,75%)`,
+
+            rotation:
+                Math.random() *
+                360,
+
+            rotationSpeed:
+                Math.random() *
+                8 - 4
+
+        });
+
+    }
+
+
+    drawConfetti();
+
+
+    setTimeout(() => {
+
+        cancelAnimationFrame(
+            confettiAnimation
+        );
+
+
+        canvas.style.display =
+            "none";
+
+    }, 120000);
+
+}
+
+
+function drawConfetti() {
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    confetti.forEach(p => {
+
+        ctx.save();
+
+
+        ctx.translate(
+            p.x,
+            p.y
+        );
+
+
+        ctx.rotate(
+            p.rotation *
+            Math.PI / 180
+        );
+
+
+        ctx.fillStyle =
+            p.color;
+
+
+        ctx.fillRect(
+
+            -p.size / 2,
+
+            -p.size / 2,
+
+            p.size,
+
+            p.size * 1.7
+
+        );
+
+
+        ctx.restore();
+
+
+        p.y +=
+            p.speed;
+
+
+        p.rotation +=
+            p.rotationSpeed;
+
+
+        if (
+            p.y >
+            canvas.height + 20
+        ) {
+
+            p.y = -20;
+
+
+            p.x =
+                Math.random() *
+                canvas.width;
+
+        }
+
+    });
+
+
+    confettiAnimation =
+        requestAnimationFrame(
+            drawConfetti
+        );
+
+}
+
+
+/* =====================================================
+   RESIZE
+===================================================== */
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        canvas.width =
+            window.innerWidth;
+
+
+        canvas.height =
+            window.innerHeight;
+
+    }
+);
+
+
+/* =====================================================
+   EXTRA ROMANTIC HEART SYSTEM
+===================================================== */
+
+const heartContainer =
+    document.getElementById(
+        "loveHearts"
+    );
+
+
+const romanticHearts = [
+
+    "❤️",
+    "🌸",
+    "😚",
+    "🙈",
+    "🌼",
+    "💐",
+    "💘",
+    "👀",
+    "💟"
+
+];
+
+
+/* =====================================================
+   FLOATING HEART
+===================================================== */
+
+function createExtraHeart() {
+
+    const heart =
+        document.createElement(
+            "div"
+        );
+
+
+    heart.className =
+        "extra-heart";
+
+
+    heart.textContent =
+        romanticHearts[
+            Math.floor(
+                Math.random() *
+                romanticHearts.length
+            )
+        ];
+
+
+    heart.style.left =
+        Math.random() *
+        100 +
+        "vw";
+
+
+    heart.style.fontSize =
+        Math.random() *
+        35 +
+        12 +
+        "px";
+
+
+    const duration =
+        Math.random() *
+        7 +
+        5;
+
+
+    heart.style.animationDuration =
+        duration +
+        "s";
+
+
+    heart.style.animationDelay =
+        Math.random() *
+        1.5 +
+        "s";
+
+
+    heartContainer.appendChild(
+        heart
+    );
+
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    }, 15000);
+
+}
+
+
+/* MANY HEARTS ❤️ */
+
+setInterval(
+    createExtraHeart,
+    150
+);
+
+
+/* Initial hearts */
+
+for (
+    let i = 0;
+    i < 50;
+    i++
+) {
+
+    setTimeout(
+        createExtraHeart,
+        i * 100
+    );
+
+}
+
+
+/* =====================================================
+   MINI HEARTS
+===================================================== */
+
+function createMiniHeart() {
+
+    const heart =
+        document.createElement(
+            "div"
+        );
+
+
+    heart.className =
+        "mini-love";
+
+
+    heart.textContent =
+        Math.random() > .5
+            ? "♥"
+            : "♡";
+
+
+    heart.style.left =
+        Math.random() *
+        100 +
+        "vw";
+
+
+    heart.style.top =
+        Math.random() *
+        100 +
+        "vh";
+
+
+    heart.style.fontSize =
+        Math.random() *
+        14 +
+        6 +
+        "px";
+
+
+    heart.style.animationDuration =
+        Math.random() *
+        3 +
+        2 +
+        "s";
+
+
+    heart.style.animationDelay =
+        Math.random() *
+        3 +
+        "s";
+
+
+    heartContainer.appendChild(
+        heart
+    );
+
+}
+
+
+/* 100 tiny hearts */
+
+for (
+    let i = 0;
+    i < 100;
+    i++
+) {
+
+    createMiniHeart();
+
+}
+
+
+/* =====================================================
+   BIG GLOWING HEARTS
+===================================================== */
+
+function createBigHeart() {
+
+    const heart =
+        document.createElement(
+            "div"
+        );
+
+
+    heart.className =
+        "big-heart";
+
+
+    heart.textContent =
+        Math.random() > .5
+            ? "❤️"
+            : "💖";
+
+
+    heart.style.left =
+        Math.random() *
+        100 +
+        "vw";
+
+
+    heart.style.bottom =
+        "-50px";
+
+
+    heart.style.fontSize =
+        Math.random() *
+        25 +
+        20 +
+        "px";
+
+
+    heart.style.animationDuration =
+        Math.random() *
+        6 +
+        8 +
+        "s";
+
+
+    heartContainer.appendChild(
+        heart
+    );
+
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    }, 100000);
+
+}
+
+
+setInterval(
+    createBigHeart,
+    2000
+);
+
+
+
+
+
+/* =====================================================
+   RESPONSE TEXT
+===================================================== */
+
+const response = `
+
+Jo,
+
+If you ever come back
+to this page someday,
+
+I hope you remember
+how this started.
+
+The question.
+The waiting.
+And then your yes.
+
+I made this little website
+just to give you a moment
+you could keep.
+
+And now,
+it's something I'll remember too.
+
+Because this wasn't just
+a website I made for you.
+
+It's where we became us.
+
+So if you're reading this again,
+just know one thing...
+
+I'd still choose you.
+
+Gab ♡
+
+`;
+
+
+document.getElementById(
+    "responseText"
+).textContent =
+    response.trim();
+
+
+/* =====================================================
+   START
+===================================================== */
+
+updateProgress();
+
+</script>
+
+
+<script>
+/* ===== DISABLE RIGHT CLICK ===== */
+document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+});
+</script>
+
+</body>
+</html>
